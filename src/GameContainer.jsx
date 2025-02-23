@@ -20,21 +20,9 @@ export default function GameContainer(){
         setSquares(sqrs);
     }, []);
 
-    const handleReset = () => {
-        grid.current.reset();
-        setGameOver(false)
-    }
-
     return(
         <div className="grid grid-cols-3 gap-[1%] relative h-[min(100vw,80vh)] w-[min(100vw,80vh)]">
             {squares}
-            {
-                gameOver &&
-                <div className="w-full absolute flex flex-col justify-center items-center bg-amber-200 top-1/2 -translate-y-1/2">
-                    <p className="text-4xl"> {grid.current.getResult()} </p>
-                    <button onClick={handleReset} className="cursor-pointer border-2 border-amber-950 rounded-xl">play again</button>
-                </div> 
-            }
         </div>
     )
 }
