@@ -1,12 +1,18 @@
 export default class Grid{
-    grid = [
-        ["", "", ""],
-        ["", "", ""],
-        ["", "", ""]
-    ];
+    constructor(grid){
+        if(grid === undefined){
+            this.grid = [
+                ["", "", ""],
+                ["", "", ""],
+                ["", "", ""]
+            ]
+        } else {
+            this.grid = grid;
+        }
+    }
 
     play(player, row, col){
         this.grid[row][col] = player;
-        return this.grid.map(row => [...row]);
+        return new Grid(this.grid.map(row => [...row]));
     }
 }

@@ -6,8 +6,9 @@ export default function Square({ row, col }){
     const [text, setText] = useState();
 
     const handleClick = () => {
-        console.log(row, col);
         setText(currentPlayer);
+        setGrid(grid.play(currentPlayer, row, col));
+        console.log(grid);
         setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
     }
     
