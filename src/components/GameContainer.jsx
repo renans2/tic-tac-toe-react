@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import { useGameContext } from "./GameContextProvider";
-import Square from "./components/Square";
+import Square from "./Square";
 
 export default function GameContainer(){
-    const { gameOver, setGameOver, currentPlayer, grid } = useGameContext();
     const [squares, setSquares] = useState([]);
 
     useEffect(() => {
@@ -21,7 +19,7 @@ export default function GameContainer(){
     }, []);
 
     return(
-        <div className="grid grid-cols-3 gap-[1%] relative h-[min(100vw,80vh)] w-[min(100vw,80vh)]">
+        <div className="game-container">
             {squares}
         </div>
     )

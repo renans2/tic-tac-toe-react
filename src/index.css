@@ -11,3 +11,64 @@ body{
     align-items: center;
     background-color: black;
 }
+
+.play-again-button{
+    @apply transition 
+           duration-200 
+           hover:bg-orange-400 
+           w-full
+           h-[min(10vw,10vh)] 
+           bg-white 
+           border-amber-950
+           font-medium 
+           text-[min(5vw,5vh)] 
+           cursor-pointer 
+           mb-2 
+           border-2 
+           rounded-[min(3vw,3vh)] 
+}
+
+.square{
+    @apply w-full 
+           h-full 
+           relative 
+           text-[min(20vw,20vh)] 
+           rounded-[10%]
+           border-1
+           border-blue-300
+}
+
+.blocked-square{
+    @apply bg-blue-950 
+           cursor-not-allowed
+}
+
+.available-square{
+    @apply bg-blue-900 transition 
+           hover:bg-blue-700 
+           duration-300 
+           cursor-pointer
+}
+
+.green-square{
+    @apply bg-green-500 
+           cursor-not-allowed
+}
+
+.player-text{
+    @apply absolute 
+           text-white 
+           top-1/2 
+           left-1/2 
+           -translate-y-1/2 
+           -translate-x-1/2
+}
+
+.game-container{
+    @apply grid 
+           grid-cols-3 
+           gap-[1%] 
+           relative 
+           h-[min(100vw,80vh)] 
+           w-[min(100vw,80vh)]
+}

@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useRef } from "react";
-import Grid from './Grid'
+import Grid from '../utils/Grid'
 
 const GameContext = createContext();
 
@@ -10,7 +10,7 @@ export default function GameContextProvider({ children }){
 
     return(
         <GameContext.Provider value={{ currentPlayer, grid, gameOver, setGameOver }}>
-            { children }
+            {children}
         </GameContext.Provider>
     )
 }
