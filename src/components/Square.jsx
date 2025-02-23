@@ -1,13 +1,12 @@
 import { useState } from "react"
 import { useGameContext } from "../GameContextProvider"
 
-export default function Square(){
+export default function Square({ row, col }){
     const { currentPlayer, setCurrentPlayer, grid, setGrid } = useGameContext();
     const [text, setText] = useState();
 
     const handleClick = () => {
-        console.log("howdy");
-        
+        console.log(row, col);
         setText(currentPlayer);
         setCurrentPlayer(currentPlayer === "X" ? "O" : "X");
     }
