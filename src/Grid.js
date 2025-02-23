@@ -17,10 +17,17 @@ export default class Grid{
     ];
 
     player = undefined;
+    playsCounter = 0;
+    winnerLine = undefined;
 
     play(player, row, col){
-        this.grid[row][col] = player;
         this.player = player;
+        this.grid[row][col] = this.player;
+        this.playsCounter++;
+    }
+
+    checkDraw(){
+        return this.playsCounter === 9;
     }
 
     checkWinner(){
@@ -28,7 +35,10 @@ export default class Grid{
             if(this.grid[line[0].row][line[0].col] === this.player &&
                this.grid[line[1].row][line[1].col] === this.player &&
                this.grid[line[2].row][line[2].col] === this.player
-            ) return true;
+            ) {
+                this.winnerLine = line;
+                return true;
+            }
         }
 
         return false;
@@ -40,5 +50,27 @@ export default class Grid{
             ["", "", ""],
             ["", "", ""]
         ];
+
+        this.player = undefined;
+        this.playsCounter = 0;
+        this.winnerLine = undefined;
+    }
+
+    checkGameOver(){
+        return this.checkWinner() || this.checkDraw();
+    }
+
+    getResult(){
+        return this.checkWinner() ? `"${this.player}" wins !!!`
+                                  : "Draw !!!"
+    }
+
+    checkIfInWinnerLine(row, col){
+        for (const square of this.winnerLine){
+            if(square.row === row && square.col === col)
+                return true;
+        }
+
+        return false;
     }
 }
