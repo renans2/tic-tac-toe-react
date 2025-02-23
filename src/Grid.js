@@ -33,4 +33,12 @@ export default class Grid{
 
         return false;
     }
+
+    reset(){
+        this.grid = [
+            ["", "", ""],
+            ["", "", ""],
+            ["", "", ""]
+        ];
+    }
 }

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useGameContext } from "../GameContextProvider"
 
 export default function Square({ row, col }){
@@ -8,13 +8,19 @@ export default function Square({ row, col }){
     const handleClick = () => {
         setText(currentPlayer.current);
         grid.current.play(currentPlayer.current, row, col);
-        currentPlayer.current = currentPlayer.current === "X" ? "O" : "X";
 
         if(grid.current.checkWinner()){
             setGameOver(true);
             console.log("winner!!!");
+        } else {
+            currentPlayer.current = currentPlayer.current === "X" ? "O" : "X";
         }
     }
+
+    useEffect(() => {
+        if(gameOver === false)
+            setText();
+    }, [gameOver]);
     
     return(
         <button 
