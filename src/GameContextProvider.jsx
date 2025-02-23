@@ -1,14 +1,15 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState, useContext, useRef } from "react";
 import Grid from './Grid'
 
 const GameContext = createContext();
 
 export default function GameContextProvider({ children }){
-    const [currentPlayer, setCurrentPlayer] = useState("O");
-    const [grid, setGrid] = useState(new Grid());
+    const currentPlayer = useRef("O");
+    const grid = useRef(new Grid());
+    const [gameOver, setGameOver] = useState(false);
 
     return(
-        <GameContext.Provider value={{ currentPlayer, setCurrentPlayer, grid, setGrid }}>
+        <GameContext.Provider value={{ currentPlayer, grid, gameOver, setGameOver }}>
             { children }
         </GameContext.Provider>
     )
