@@ -4,13 +4,19 @@ import { useGameContext } from "../context/GameContextProvider"
 export default function Square({ row, col }){
     const { currentPlayer, grid, gameOver, setGameOver } = useGameContext();
     const [text, setText] = useState();
+    const [disabled, setDisable] = useState(false);
 
     useEffect(() => {
-        if(gameOver === false)
+        if(gameOver && !disabled)
+            setDisable(true);
+        else if(!gameOver){
+            setDisable(false);
             setText();
+        }
     }, [gameOver]);
 
     const handlePlay = () => {
+        setDisable(true);
         setText(currentPlayer.current);
         grid.current.play(currentPlayer.current, row, col);
 
@@ -29,18 +35,26 @@ export default function Square({ row, col }){
                grid.current.checkIfInWinnerLine(row, col);
     }
 
-    const isDisabled = () => {
-        return gameOver || text !== undefined;
+    const handleMouseEnter = () => {
+        if(!disabled)
+            setText(currentPlayer.current);
+    }
+
+    const handleMouseLeave = () => {
+        if(!disabled)
+            setText();
     }
     
     return(
         <button onClick={handlePlay} 
-                disabled={isDisabled()}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                disabled={disabled}
                 className={"square " +
                     (
                         greenSquare()
                         ? "green-square" 
-                        : isDisabled() 
+                        : disabled 
                         ? "blocked-square" 
                         : "available-square"
                     )
